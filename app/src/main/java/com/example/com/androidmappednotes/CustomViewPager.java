@@ -1,10 +1,8 @@
 package com.example.com.androidmappednotes;
-
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-
 /**
  * Created by uRi on 10/02/2016.
  */
@@ -16,21 +14,14 @@ public class CustomViewPager extends ViewPager {
         }
         @Override
         public boolean onTouchEvent(MotionEvent event) {
-            if (this.enabled) {
-                return super.onTouchEvent(event);
-            }
-
+            if (this.enabled) {return super.onTouchEvent(event);}
             return false;
         }
         @Override
         public boolean onInterceptTouchEvent(MotionEvent event) {
-            if (this.enabled) {
-                return super.onInterceptTouchEvent(event);
-            }
-
+            if (this.enabled) {return super.onInterceptTouchEvent(event);}
             return false;
         }
-
         public void setPagingEnabled(boolean enabled) {
             this.enabled = enabled;
         }

@@ -1,24 +1,19 @@
 package com.example.com.androidmappednotes;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.firebase.client.Firebase;
 import com.firebase.ui.FirebaseListAdapter;
 import com.squareup.picasso.Picasso;
-
 /**
  * A simple {@link Fragment} subclass.
  */
 public class NotesFragment extends Fragment {
-    private FirebaseListAdapter<Note> adapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -27,20 +22,21 @@ public class NotesFragment extends Fragment {
         FirebaseConfig config  = (FirebaseConfig) getActivity().getApplication();
         Firebase ref = config.getMainReference();
         final Firebase notesReference = ref.child("notes");
-        adapter = new FirebaseListAdapter<Note>(getActivity(), Note.class, R.layout.listview_layout, notesReference) {
+        FirebaseListAdapter<Note> adapter = new FirebaseListAdapter<Note>(getActivity(), Note.class, R.layout.listview_layout, notesReference) {
             @Override
-            protected void populateView(View view, Note note, int position)
-            {
+            protected void populateView(View view, Note note, int position) {
                 TextView title = (TextView) view.findViewById(R.id.TVtitle);
                 TextView description = (TextView) view.findViewById(R.id.TVdescription);
                 TextView latlng = (TextView) view.findViewById(R.id.TVlatlng);
                 ImageView image = (ImageView) view.findViewById(R.id.IVimage);
                 title.setText(note.getTitle());
                 description.setText(note.getDescription());
-                latlng.setText("Latitude: "+note.getLatitude()+"\nLongitude: "+note.getLongitude());
-                //if no encuentra el archivo de la foto hecha carga esta imagen.
+                latlng.setText("Latitude: " + note.getLatitude() + "\nLongitude: " + note.getLongitude());
+
+                //If there is no image to be loaded, load this.
                 Picasso.with(getContext()).load(R.drawable.noimage).fit().into(image);
-                //Si encuentra el archivo de la foto hecha carga la foto.
+
+                //Else load the image that was taken.
                 //Picasso.with(getContext()).load(note.getImagePath()).fit().into(image);
             }
         };
@@ -48,6 +44,5 @@ public class NotesFragment extends Fragment {
         return view;
     }
     public NotesFragment() {
-        // Required empty public constructor
     }
 }

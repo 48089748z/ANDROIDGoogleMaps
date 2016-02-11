@@ -1,8 +1,6 @@
 package com.example.com.androidmappednotes;
-
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -12,10 +10,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import com.firebase.client.Firebase;
-
 
 public class NewNoteActivity extends AppCompatActivity  implements LocationListener
 {
@@ -48,7 +44,9 @@ public class NewNoteActivity extends AppCompatActivity  implements LocationListe
     }
     public void openCamera()
     {
-
+        //Open Camera
+        //Take photo and load it into the new note activity image view
+        //If they click add new note without taking a photo, simply load the default no image photo.
     }
     public void addNoteToFireBase(Note note)
     {

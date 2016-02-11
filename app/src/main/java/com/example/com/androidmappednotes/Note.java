@@ -1,20 +1,15 @@
 package com.example.com.androidmappednotes;
-
-import android.graphics.Bitmap;
-
 /**
  * Created by 48089748z on 10/02/16.
  */
 public class Note {
+    private String id;
     private String title;
     private String description;
     private String latitude;
     private String longitude;
-    private String key;
-
     public Note() {
     }
-
     public String getTitle() {
         return title;
     }
@@ -46,12 +41,10 @@ public class Note {
     public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
-
-    public String getKey() {
-        return key;
+    public String getId() {
+        return id;
     }
-
-    public void setKey(String key) {
-        this.key = key;
+    public void setId(String id) {
+        this.id = id;
     }
 }
