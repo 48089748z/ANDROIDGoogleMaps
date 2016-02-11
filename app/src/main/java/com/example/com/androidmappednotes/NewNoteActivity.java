@@ -54,11 +54,13 @@ public class NewNoteActivity extends AppCompatActivity  implements LocationListe
     }
 
     @Override
-    public void onLocationChanged(Location location) {
-        dialog.dismiss();
-        loc = location;
+    public void onLocationChanged(Location location)
+    {
+        if (location!=null) {
+            loc = location;
+            dialog.dismiss();
+        }
     }
-
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {}
     @Override

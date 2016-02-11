@@ -11,7 +11,7 @@
         <org.osmdroid.views.MapView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:id="@+id/Mmap"
+            android:id="@+id/MVmap"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>

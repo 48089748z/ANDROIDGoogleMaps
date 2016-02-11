@@ -6,10 +6,13 @@
         android:id="@+id/action_newnote"
         android:orderInCategory="100"
         android:title="New Note"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_newnote" />
+
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="Settings"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_settings"/>
 </menu>
