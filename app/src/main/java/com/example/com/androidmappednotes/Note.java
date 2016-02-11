@@ -10,9 +10,17 @@ public class Note {
     private String description;
     private String latitude;
     private String longitude;
-    private String id;
+    private String key;
 
     public Note() {
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -31,14 +39,6 @@ public class Note {
         this.latitude = latitude;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getLongitude() {
         return longitude;
     }
@@ -47,11 +47,11 @@ public class Note {
         this.longitude = longitude;
     }
 
-    public String getId() {
-        return id;
+    public String getKey() {
+        return key;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setKey(String key) {
+        this.key = key;
     }
 }
