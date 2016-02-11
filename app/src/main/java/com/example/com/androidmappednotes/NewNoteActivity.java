@@ -2,12 +2,15 @@ package com.example.com.androidmappednotes;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -43,6 +46,10 @@ public class NewNoteActivity extends AppCompatActivity  implements LocationListe
             }
         });
     }
+    public void openCamera()
+    {
+
+    }
     public void addNoteToFireBase(Note note)
     {
         FirebaseConfig config  = (FirebaseConfig) this.getApplication();
@@ -67,4 +74,19 @@ public class NewNoteActivity extends AppCompatActivity  implements LocationListe
     public void onProviderEnabled(String provider) {}
     @Override
     public void onProviderDisabled(String provider) {}
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_newnote, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_takephoto) {
+            openCamera();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
