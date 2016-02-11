@@ -13,7 +13,7 @@ public class FirebaseConfig extends Application
         super.onCreate();
         Firebase.setAndroidContext(this);
         Firebase.getDefaultConfig().setPersistenceEnabled(true);
-        mainReference = new Firebase("https://uridatabase.firebaseio.com/");
+        mainReference = new Firebase("https://mapped-notes-app.firebaseio.com/");
     }
     public Firebase getMainReference() {
         return mainReference;
