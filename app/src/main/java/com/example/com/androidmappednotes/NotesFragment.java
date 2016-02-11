@@ -10,6 +10,9 @@ import android.widget.TextView;
 import com.firebase.client.Firebase;
 import com.firebase.ui.FirebaseListAdapter;
 import com.squareup.picasso.Picasso;
+
+import java.io.File;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -32,12 +35,15 @@ public class NotesFragment extends Fragment {
                 title.setText(note.getTitle());
                 description.setText(note.getDescription());
                 latlng.setText("Latitude: " + note.getLatitude() + "\nLongitude: " + note.getLongitude());
-
-                //If there is no image to be loaded, load this.
-                Picasso.with(getContext()).load(R.drawable.noimage).fit().into(image);
-
-                //Else load the image that was taken.
-                //Picasso.with(getContext()).load(note.getImagePath()).fit().into(image);
+                if (note.getImagePath()==null)
+                {
+                    Picasso.with(getContext()).load(R.drawable.noimage).fit().into(image);
+                }
+                else
+                {
+                    File imagePath = new File(note.getImagePath());
+                    Picasso.with(getContext()).load(imagePath).centerCrop().resize(185, 185).into(image);
+                }
             }
         };
         notesList.setAdapter(adapter);

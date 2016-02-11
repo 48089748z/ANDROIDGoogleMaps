@@ -40,8 +40,8 @@
         android:layout_alignEnd="@+id/ETtitle" />
 
     <ImageView
-        android:layout_width="280dp"
-        android:layout_height="200dp"
+        android:layout_width="290dp"
+        android:layout_height="230dp"
         android:id="@+id/IVtakenPhoto"
         android:src="@drawable/noimage"
         android:layout_centerVertical="true"

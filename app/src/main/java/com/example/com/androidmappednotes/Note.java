@@ -8,6 +8,7 @@ public class Note {
     private String description;
     private String latitude;
     private String longitude;
+    private String imagePath;
     public Note() {
     }
     public String getTitle() {
@@ -46,5 +47,13 @@ public class Note {
     }
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }
