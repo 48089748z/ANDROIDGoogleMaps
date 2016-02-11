@@ -4,10 +4,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 import com.firebase.ui.FirebaseListAdapter;
 import com.squareup.picasso.Picasso;
 
@@ -18,13 +23,20 @@ import java.io.File;
  */
 public class NotesFragment extends Fragment {
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         final ListView notesList = (ListView) view.findViewById(R.id.LVnotes);
         FirebaseConfig config  = (FirebaseConfig) getActivity().getApplication();
-        Firebase ref = config.getMainReference();
-        final Firebase notesReference = ref.child("notes");
+        final Firebase mainReference = config.getMainReference();
+        final Firebase notesReference = mainReference.child("notes");
+        notesList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                mainReference.removeValue();
+                return false;
+            }
+        });
         FirebaseListAdapter<Note> adapter = new FirebaseListAdapter<Note>(getActivity(), Note.class, R.layout.listview_layout, notesReference) {
             @Override
             protected void populateView(View view, Note note, int position) {

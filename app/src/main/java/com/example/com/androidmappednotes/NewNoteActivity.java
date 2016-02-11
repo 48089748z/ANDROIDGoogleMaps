@@ -58,7 +58,8 @@ public class NewNoteActivity extends AppCompatActivity  implements LocationListe
             }
         });
     }
-    public void openCamera() {
+    public void openCamera()
+    {
         tookPhoto = true;
         Intent openCamera = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
         startActivity(openCamera);
