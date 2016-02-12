@@ -1,4 +1,5 @@
 package com.example.com.androidmappednotes;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.app.AlertDialog;
 
 import com.firebase.client.Firebase;
 
@@ -35,6 +37,24 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new MapFragment(), "MAP");
         viewPager.setAdapter(adapter);
         viewPager.setPagingEnabled(false);
+    }
+    public void showAlert()
+    {
+        final FirebaseConfig config  = (FirebaseConfig) this.getApplication();
+        new AlertDialog.Builder(this)
+                .setTitle("   DELETE ALL NOTES?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        Firebase mainReference = config.getMainReference();
+                        mainReference.removeValue();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which){}
+                })
+                .setIcon(R.drawable.ic_alert)
+                .show();
     }
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> fragmentsList = new ArrayList<>();
@@ -68,9 +88,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_delete) {
-            FirebaseConfig config  = (FirebaseConfig) this.getApplication();
-            Firebase mainReference = config.getMainReference();
-            mainReference.removeValue();
+            showAlert();
             return true;
         }
         if (id == R.id.action_newnote) {
