@@ -30,13 +30,6 @@ public class NotesFragment extends Fragment {
         FirebaseConfig config  = (FirebaseConfig) getActivity().getApplication();
         final Firebase mainReference = config.getMainReference();
         final Firebase notesReference = mainReference.child("notes");
-        notesList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                mainReference.removeValue();
-                return false;
-            }
-        });
         FirebaseListAdapter<Note> adapter = new FirebaseListAdapter<Note>(getActivity(), Note.class, R.layout.listview_layout, notesReference) {
             @Override
             protected void populateView(View view, Note note, int position) {

@@ -9,6 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.firebase.client.Firebase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,7 +67,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_delete) {
+            FirebaseConfig config  = (FirebaseConfig) this.getApplication();
+            Firebase mainReference = config.getMainReference();
+            mainReference.removeValue();
             return true;
         }
         if (id == R.id.action_newnote) {
